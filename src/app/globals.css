@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-hero-gradient font-sans antialiased;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-500 hover:bg-primary-600 text-white px-6 py-3 rounded-full font-semibold shadow-button;
+    @apply transform hover:scale-105 transition-all duration-200;
+  }
+
+  .btn-gradient {
+    @apply bg-button-gradient text-white px-6 py-3 rounded-full font-semibold shadow-button;
+    @apply transform hover:scale-105 transition-all duration-200;
+  }
+
+  .card {
+    @apply bg-white/60 backdrop-blur-sm rounded-2xl shadow-card border border-white/20;
+    @apply transition-all duration-200;
+  }
+
+  .card-hover {
+    @apply card hover:shadow-lg hover:-translate-y-1;
+  }
+}
