@@ -22,16 +22,6 @@ const mockStats = {
 export default function StatsPage() {
   return (
     <div className='min-h-screen'>
-      {/* Header */}
-      <header className='px-6 py-4 bg-white/80 backdrop-blur-sm border-b border-white/20'>
-        <div className='max-w-4xl mx-auto flex items-center justify-between'>
-          <Link href='/' className='text-2xl font-bold text-primary-500'>
-            🏃‍♂️ RunVibe
-          </Link>
-          <div className='text-lg font-bold text-gray-800'>참여 통계</div>
-        </div>
-      </header>
-
       <div className='max-w-4xl mx-auto px-6 py-12'>
         <div className='text-center mb-12'>
           <h1 className='text-3xl font-bold text-gray-800 mb-4'>

@@ -52,14 +52,6 @@ const runnerTypes = [
 export default function HomePage() {
   return (
     <div className='min-h-screen'>
-      {/* Header */}
-      <header className='px-6 py-4 bg-white/80 backdrop-blur-sm border-b border-white/20'>
-        <div className='max-w-4xl mx-auto flex items-center justify-between'>
-          <div className='text-2xl font-bold text-primary-500'>🏃‍♂️ RunVibe</div>
-          <div className='text-lg font-bold text-gray-800'>러닝 취향 분석</div>
-        </div>
-      </header>
-
       <div className='max-w-4xl mx-auto px-6 pb-12'>
         {/* Hero Section */}
         <section className='text-center py-16'>
