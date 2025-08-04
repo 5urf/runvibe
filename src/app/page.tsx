@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui";
 import Link from "next/link";
 
 // 러너 타입 mock 데이터
@@ -85,9 +86,9 @@ export default function HomePage() {
           </p>
 
           <Link href='/test'>
-            <button className='btn-gradient text-xl px-16 py-5 mb-8 inline-block'>
+            <Button variant='gradient' size='2xl' className='mb-8'>
               🚀 테스트 시작하기
-            </button>
+            </Button>
           </Link>
 
           <div className='text-gray-500 text-lg'>
@@ -139,9 +140,9 @@ export default function HomePage() {
               친구들도 함께 참여해보세요!
             </p>
             <Link href='/test'>
-              <button className='btn-primary text-xl px-12 py-4'>
+              <Button variant='primary' size='xl'>
                 지금 바로 시작하기 ✨
-              </button>
+              </Button>
             </Link>
           </div>
         </section>

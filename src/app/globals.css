@@ -9,14 +9,43 @@
 }
 
 @layer components {
-  .btn-primary {
-    @apply bg-primary-500 hover:bg-primary-600 text-white px-6 py-3 rounded-full font-semibold shadow-button;
+  /* 버튼 기본 스타일  */
+  .btn-base {
+    @apply rounded-full font-semibold shadow-button;
     @apply transform hover:scale-105 transition-all duration-200;
   }
 
+  .btn-primary {
+    @apply btn-base bg-primary-500 hover:bg-primary-600 text-white;
+  }
+
   .btn-gradient {
-    @apply bg-button-gradient text-white px-6 py-3 rounded-full font-semibold shadow-button;
-    @apply transform hover:scale-105 transition-all duration-200;
+    @apply btn-base bg-button-gradient text-white;
+  }
+
+  .btn-secondary {
+    @apply btn-base bg-white/60 backdrop-blur-sm border border-white/20 text-gray-700 hover:bg-white/80;
+  }
+
+  /* 버튼 크기 유틸리티 */
+  .btn-sm {
+    @apply px-4 py-2 text-sm;
+  }
+
+  .btn-md {
+    @apply px-6 py-3 text-base;
+  }
+
+  .btn-lg {
+    @apply px-8 py-3 text-lg;
+  }
+
+  .btn-xl {
+    @apply px-12 py-4 text-xl;
+  }
+
+  .btn-2xl {
+    @apply px-16 py-5 text-xl;
   }
 
   .card {

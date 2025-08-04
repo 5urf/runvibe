@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui";
 import Link from "next/link";
 
 export default function TestPage() {
@@ -37,7 +38,7 @@ export default function TestPage() {
             조금만 기다려주세요! 🏃‍♂️
           </p>
           <Link href='/'>
-            <button className='btn-primary'>홈으로 돌아가기</button>
+            <Button variant='primary'>홈으로 돌아가기</Button>
           </Link>
         </div>
       </div>

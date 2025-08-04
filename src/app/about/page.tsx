@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui";
 import Link from "next/link";
 
 export default function AboutPage() {
@@ -155,9 +156,9 @@ export default function AboutPage() {
               3분이면 당신의 러닝 타입을 알 수 있어요!
             </p>
             <Link href='/test'>
-              <button className='btn-gradient text-xl px-12 py-4'>
+              <Button variant='gradient' size='xl'>
                 지금 바로 테스트하기 ✨
-              </button>
+              </Button>
             </Link>
           </section>
         </div>

@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui";
 import Link from "next/link";
 
 // Mock 데이터
@@ -87,9 +88,9 @@ export default function StatsPage() {
             아직 테스트를 해보지 않으셨나요?
           </p>
           <Link href='/test'>
-            <button className='btn-gradient text-lg px-8 py-3'>
+            <Button variant='gradient' size='lg'>
               나도 테스트 해보기 🚀
-            </button>
+            </Button>
           </Link>
         </div>
       </div>
