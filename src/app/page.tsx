@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui";
+import { Button, RunnerTypeCard } from "@/components/ui";
 import Link from "next/link";
 
 // 러너 타입 mock 데이터
@@ -100,20 +100,14 @@ export default function HomePage() {
 
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
             {runnerTypes.map((type) => (
-              <div
+              <RunnerTypeCard
                 key={type.id}
-                className={`${type.color} card-hover p-6 text-center group cursor-pointer`}
-              >
-                <div className='text-4xl mb-4 group-hover:scale-110 transition-transform duration-200'>
-                  {type.emoji}
-                </div>
-                <h3 className='font-bold text-gray-800 text-lg mb-2'>
-                  {type.name}
-                </h3>
-                <p className='text-gray-600 text-sm leading-relaxed mb-2'>
-                  {type.description}
-                </p>
-              </div>
+                id={type.id}
+                name={type.name}
+                emoji={type.emoji}
+                description={type.description}
+                background={type.color}
+              />
             ))}
           </div>
         </section>
