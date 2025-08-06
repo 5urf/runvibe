@@ -33,7 +33,7 @@ const TestNavigation = forwardRef<HTMLDivElement, ITestNavigationProps>(
       <div
         ref={ref}
         className={cn(
-          "flex justify-between items-center max-w-2xl mx-auto",
+          "flex justify-between items-center w-full mx-auto",
           className
         )}
         {...props}

@@ -17,7 +17,7 @@ const QuestionCard = forwardRef<HTMLDivElement, IQuestionCardProps>(
     return (
       <div
         ref={ref}
-        className={cn("card p-8 max-w-2xl mx-auto", className)}
+        className={cn("card p-8 w-full mx-auto", className)}
         {...props}
       >
         {/* 질문 제목 */}
