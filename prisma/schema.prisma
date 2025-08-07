@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model TestResult {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  // 테스트 결과 - 메인 데이터
+  runnerType String // 'jogger', 'speedster', 'endurance', 'explorer', 'social', 'analyzer'
+
+  // 사용자 답변 (JSON)
+  answers String
+
+  // 각 타입별 점수 - 통계 페이지용
+  joggerScore    Int @default(0)
+  speedsterScore Int @default(0)
+  enduranceScore Int @default(0)
+  explorerScore  Int @default(0)
+  socialScore    Int @default(0)
+  analyzerScore  Int @default(0)
+
+  @@map("test_results")
+}
