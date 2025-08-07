@@ -11,8 +11,53 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "RunVibe",
-  description: "러닝 취향 분석 서비스",
+  title: {
+    template: "%s - RunVibe",
+    default: "RunVibe - 러닝 취향 분석 서비스",
+  },
+  description:
+    "MBTI처럼 재미있는 러닝 취향 분석 서비스. 15개 질문으로 나만의 러닝 스타일을 찾아보세요.",
+  keywords:
+    "러닝, 취향분석, 러닝테스트, MBTI, 러너타입, 마라톤, 조깅, 러닝크루",
+  authors: [{ name: "RunVibe Team" }],
+  creator: "RunVibe",
+  publisher: "RunVibe",
+  metadataBase: new URL("https://runvibe.vercel.app"), // 실제 배포 URL로 변경
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    siteName: "RunVibe",
+    images: [
+      {
+        url: "/og-image.png", // TODO: OpenGraph 이미지 추가
+        width: 1200,
+        height: 630,
+        alt: "RunVibe - 러닝 취향 분석 서비스",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    // TODO: Google Search Console 인증 후 추가
+    // google: "google-verification-code",
+    // naver: "naver-verification-code"
+  },
 };
 
 export default function RootLayout({
