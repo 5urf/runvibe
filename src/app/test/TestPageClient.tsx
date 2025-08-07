@@ -2,11 +2,10 @@
 
 import { ProgressBar, QuestionCard, TestNavigation } from "@/components/ui";
 import { questions } from "@/data/questions";
-import { runnerTypeInfo } from "@/data/runnerTypeInfo";
-import { RunnerType } from "@/types/test";
-import { calculateRunnerType } from "@/utils/calculateScore";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "sonner";
+import { saveTestResult } from "./actions";
 
 export default function TestPageClient() {
   const router = useRouter();
@@ -39,7 +38,6 @@ export default function TestPageClient() {
     if (!canGoNext) return;
 
     if (isLastQuestion) {
-      // 테스트 완료 - 결과 계산 및 페이지 이동
       handleCompleteTest();
     } else {
       setCurrentQuestionIndex((prev) => prev + 1);
@@ -60,19 +58,26 @@ export default function TestPageClient() {
         answersArray.push(answer);
       }
 
-      const resultType: RunnerType = calculateRunnerType(answersArray);
-      const typeInfo = runnerTypeInfo[resultType];
+      const resultId = await saveTestResult(answersArray);
 
-      // 결과 페이지로 이동 (임시로 알럿)
-      alert(
-        `테스트 완료! 당신은 ${typeInfo.name} ${typeInfo.emoji} 입니다!\n\n${typeInfo.description}`
-      );
+      toast.success("테스트가 완료되었습니다!", {
+        description: "결과를 확인해보세요 🎉",
+        duration: 2000,
+      });
 
-      // TODO: 실제로는 결과 페이지로 리디렉트
-      // router.push(`/result/${resultId}`);
+      router.push(`/result/${resultId}`);
     } catch (error) {
       console.error("테스트 완료 처리 중 오류:", error);
-      alert("오류가 발생했습니다. 다시 시도해주세요.");
+
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : "알 수 없는 오류가 발생했습니다.";
+
+      toast.error("오류가 발생했습니다", {
+        description: errorMessage,
+        duration: 4000,
+      });
     } finally {
       setIsCompleting(false);
     }
@@ -87,6 +92,7 @@ export default function TestPageClient() {
             total={totalQuestions}
           />
         </section>
+
         <section
           aria-label={`질문 ${currentQuestionIndex + 1}`}
           className='mb-8'
@@ -97,6 +103,7 @@ export default function TestPageClient() {
             onAnswerSelect={handleAnswerSelect}
           />
         </section>
+
         <div className='mb-8'>
           <TestNavigation
             currentIndex={currentQuestionIndex}
@@ -109,6 +116,7 @@ export default function TestPageClient() {
             onNext={handleNext}
           />
         </div>
+
         {!canGoNext && (
           <aside className='text-center mt-6' role='status' aria-live='polite'>
             <p className='text-gray-500'>
@@ -116,6 +124,20 @@ export default function TestPageClient() {
             </p>
           </aside>
         )}
+
+        {/* 완료 중 상태 표시 */}
+        {isCompleting && (
+          <div className='fixed inset-0 bg-black/50 flex items-center justify-center z-50'>
+            <div className='bg-white rounded-2xl p-8 max-w-sm mx-6 text-center'>
+              <div className='animate-spin w-12 h-12 border-4 border-primary-200 border-t-primary-500 rounded-full mx-auto mb-4'></div>
+              <h3 className='text-lg font-semibold text-gray-800 mb-2'>
+                결과를 분석하고 있어요
+              </h3>
+              <p className='text-gray-600'>잠시만 기다려주세요 ✨</p>
+            </div>
+          </div>
+        )}
+
         {/* 디버그 정보 (개발 중에만) */}
         {process.env.NODE_ENV === "development" && (
           <aside className='mt-8 p-4 bg-gray-100 rounded-lg text-xs text-gray-600'>
