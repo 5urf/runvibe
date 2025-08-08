@@ -19,12 +19,12 @@ export async function saveTestResult(answers: string[]): Promise<string> {
       data: {
         runnerType: resultType,
         answers: JSON.stringify(answers),
-        joggerScore: scores.jogger,
-        speedsterScore: scores.speedster,
-        enduranceScore: scores.endurance,
-        explorerScore: scores.explorer,
-        socialScore: scores.social,
-        analyzerScore: scores.analyzer,
+        slowScore: scores.slow,
+        marathonerScore: scores.marathoner,
+        trailScore: scores.trail,
+        crewScore: scores.crew,
+        styleScore: scores.style,
+        raceScore: scores.race,
       },
     });
 

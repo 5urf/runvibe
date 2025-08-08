@@ -17,12 +17,12 @@ const config: Config = {
         },
         // 러너 타입별 배경 컬러 (6가지)
         runner: {
-          green: "#dcfce7", // 조깅 러너
-          red: "#fee2e2", // 스피드 러너
-          blue: "#dbeafe", // 지구력 러너
-          purple: "#e9d5ff", // 모험 러너
-          yellow: "#fef3c7", // 소셜 러너
-          indigo: "#e0e7ff", // 데이터 러너
+          slow: "#dcfce7", // 슬로우 러너
+          marathoner: "#dbeafe", // 마라토너
+          trail: "#fed7aa", // 트레일 러너
+          crew: "#e9d5ff", // 크루 러너
+          style: "#fce7f3", // 패션 러너
+          race: "#fef3c7", // 레이스 헌터
         },
       },
 

@@ -37,22 +37,22 @@ export default async function ResultPage({ params }: ResultPageProps) {
               {new Date(result.createdAt).toLocaleString()}
             </div>
             <div>
-              <strong>조깅:</strong> {result.joggerScore}점
+              <strong>슬로우:</strong> {result.slowScore}점 🌱
             </div>
             <div>
-              <strong>스피드:</strong> {result.speedsterScore}점
+              <strong>마라토너:</strong> {result.marathonerScore}점 🏅
             </div>
             <div>
-              <strong>지구력:</strong> {result.enduranceScore}점
+              <strong>트레일:</strong> {result.trailScore}점 🏔️
             </div>
             <div>
-              <strong>모험:</strong> {result.explorerScore}점
+              <strong>크루:</strong> {result.crewScore}점 👥
             </div>
             <div>
-              <strong>소셜:</strong> {result.socialScore}점
+              <strong>패션:</strong> {result.styleScore}점 👟
             </div>
             <div>
-              <strong>분석:</strong> {result.analyzerScore}점
+              <strong>레이스:</strong> {result.raceScore}점 🥇
             </div>
           </div>
         </div>

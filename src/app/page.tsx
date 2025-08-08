@@ -1,55 +1,55 @@
-"use client";
-
 import { Button, RunnerTypeCard } from "@/components/ui";
 import Link from "next/link";
+import { getStats } from "../../lib/stats";
 
-// 러너 타입 mock 데이터
 const runnerTypes = [
   {
-    id: "jogger",
-    name: "조깅 러너",
+    id: "slow",
+    name: "슬로우 러너",
     emoji: "🌱",
-    color: "bg-runner-green border-green-200",
-    description: "여유로운 페이스로 힐링과 건강관리를 추구하는 타입",
+    color: "bg-runner-slow border-runner-slow/30",
+    description: "느린 페이스로 오래 달리며 여유와 회복을 중시하는 타입",
   },
   {
-    id: "speedster",
-    name: "스피드 러너",
-    emoji: "⚡",
-    color: "bg-runner-red border-red-200",
-    description: "빠른 페이스로 짧은 거리를 선호하는 타입",
+    id: "marathoner",
+    name: "마라토너",
+    emoji: "🏅",
+    color: "bg-runner-marathoner border-runner-marathoner/30",
+    description: "장거리에서 한계를 시험하고 성취를 추구하는 타입",
   },
   {
-    id: "endurance",
-    name: "지구력 러너",
-    emoji: "🎯",
-    color: "bg-runner-blue border-blue-200",
-    description: "장거리를 꾸준한 페이스로 완주하는 타입",
-  },
-  {
-    id: "explorer",
-    name: "모험 러너",
+    id: "trail",
+    name: "트레일 러너",
     emoji: "🏔️",
-    color: "bg-runner-purple border-purple-200",
-    description: "새로운 코스 탐험과 트레일을 선호하는 타입",
+    color: "bg-runner-trail border-runner-trail/30",
+    description: "자연과 지형을 즐기며 새로운 코스를 탐험하는 타입",
   },
   {
-    id: "social",
-    name: "소셜 러너",
+    id: "crew",
+    name: "크루 러너",
     emoji: "👥",
-    color: "bg-runner-yellow border-yellow-200",
-    description: "함께 뛰며 크루 활동을 즐기는 타입",
+    color: "bg-runner-crew border-runner-crew/30",
+    description: "함께 뛰는 동기부여를 선호하고 사회적 활동을 즐기는 타입",
   },
   {
-    id: "analyzer",
-    name: "데이터 러너",
-    emoji: "📊",
-    color: "bg-runner-indigo border-indigo-200",
-    description: "기록 분석과 체계적 훈련을 중시하는 타입",
+    id: "style",
+    name: "패션 러너",
+    emoji: "👟",
+    color: "bg-runner-style border-runner-style/30",
+    description: "러닝을 패션과 라이프스타일의 일부로 즐기는 타입",
+  },
+  {
+    id: "race",
+    name: "레이스 헌터",
+    emoji: "🥇",
+    color: "bg-runner-race border-runner-race/30",
+    description: "다양한 러닝 대회를 찾아다니며 참여하는 타입",
   },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const { totalParticipants } = await getStats();
+
   return (
     <div className='min-h-screen'>
       <div className='max-w-4xl mx-auto px-6 pb-12'>
@@ -84,7 +84,10 @@ export default function HomePage() {
           </Link>
 
           <div className='text-gray-500 text-lg'>
-            지금까지 <span className='font-bold text-primary-500'>1,234명</span>
+            지금까지{" "}
+            <span className='font-bold text-primary-500'>
+              {totalParticipants.toLocaleString()}명
+            </span>
             이 참여했어요! 🎉
           </div>
         </section>
