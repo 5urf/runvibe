@@ -18,18 +18,18 @@ model TestResult {
   createdAt DateTime @default(now())
 
   // 테스트 결과 - 메인 데이터
-  runnerType String // 'jogger', 'speedster', 'endurance', 'explorer', 'social', 'analyzer'
+  runnerType String // 'slow', 'marathoner', 'trail', 'crew', 'style', 'race'
 
   // 사용자 답변 (JSON)
   answers String
 
   // 각 타입별 점수 - 통계 페이지용
-  joggerScore    Int @default(0)
-  speedsterScore Int @default(0)
-  enduranceScore Int @default(0)
-  explorerScore  Int @default(0)
-  socialScore    Int @default(0)
-  analyzerScore  Int @default(0)
+  slowScore       Int @default(0) // 슬로우 러너 
+  marathonerScore Int @default(0) // 마라토너 
+  trailScore      Int @default(0) // 트레일 러너 
+  crewScore       Int @default(0) // 크루 러너 
+  styleScore      Int @default(0) // 패션 러너 
+  raceScore       Int @default(0) // 레이스 헌터 
 
   @@map("test_results")
 }

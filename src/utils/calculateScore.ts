@@ -3,12 +3,12 @@ import { IRunnerTypeScores, RunnerType } from "@/types/test";
 
 export function calculateScores(answers: string[]): IRunnerTypeScores {
   const totalScores: IRunnerTypeScores = {
-    jogger: 0,
-    speedster: 0,
-    endurance: 0,
-    explorer: 0,
-    social: 0,
-    analyzer: 0,
+    slow: 0,
+    marathoner: 0,
+    trail: 0,
+    crew: 0,
+    style: 0,
+    race: 0,
   };
 
   answers.forEach((answerId, questionIndex) => {
