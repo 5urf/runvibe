@@ -51,43 +51,55 @@ export default function AboutPage() {
               <div className='flex items-start space-x-4'>
                 <div className='text-3xl'>🌱</div>
                 <div>
-                  <h3 className='font-bold text-gray-800'>조깅 러너</h3>
-                  <p className='text-gray-600'>여유로운 페이스, 힐링 중심</p>
+                  <h3 className='font-bold text-gray-800'>슬로우 러너</h3>
+                  <p className='text-gray-600'>
+                    느린 페이스로 오래 달리며 여유와 회복을 중시
+                  </p>
                 </div>
               </div>
               <div className='flex items-start space-x-4'>
-                <div className='text-3xl'>⚡</div>
+                <div className='text-3xl'>🏅</div>
                 <div>
-                  <h3 className='font-bold text-gray-800'>스피드 러너</h3>
-                  <p className='text-gray-600'>빠른 페이스, 짧은 거리 선호</p>
-                </div>
-              </div>
-              <div className='flex items-start space-x-4'>
-                <div className='text-3xl'>🎯</div>
-                <div>
-                  <h3 className='font-bold text-gray-800'>지구력 러너</h3>
-                  <p className='text-gray-600'>장거리, 꾸준한 페이스 유지</p>
+                  <h3 className='font-bold text-gray-800'>마라토너</h3>
+                  <p className='text-gray-600'>
+                    장거리에서 한계를 시험하고 성취를 추구
+                  </p>
                 </div>
               </div>
               <div className='flex items-start space-x-4'>
                 <div className='text-3xl'>🏔️</div>
                 <div>
-                  <h3 className='font-bold text-gray-800'>모험 러너</h3>
-                  <p className='text-gray-600'>새로운 코스 탐험, 트레일 선호</p>
+                  <h3 className='font-bold text-gray-800'>트레일 러너</h3>
+                  <p className='text-gray-600'>
+                    자연과 지형을 즐기며 새로운 코스를 탐험
+                  </p>
                 </div>
               </div>
               <div className='flex items-start space-x-4'>
                 <div className='text-3xl'>👥</div>
                 <div>
-                  <h3 className='font-bold text-gray-800'>소셜 러너</h3>
-                  <p className='text-gray-600'>함께 뛰기 선호, 크루 활동</p>
+                  <h3 className='font-bold text-gray-800'>크루 러너</h3>
+                  <p className='text-gray-600'>
+                    함께 뛰는 동기부여를 선호하고 사회적 활동을 즐김
+                  </p>
                 </div>
               </div>
               <div className='flex items-start space-x-4'>
-                <div className='text-3xl'>📊</div>
+                <div className='text-3xl'>👟</div>
                 <div>
-                  <h3 className='font-bold text-gray-800'>데이터 러너</h3>
-                  <p className='text-gray-600'>기록 분석과 체계적 훈련</p>
+                  <h3 className='font-bold text-gray-800'>패션 러너</h3>
+                  <p className='text-gray-600'>
+                    러닝을 패션과 라이프스타일의 일부로 즐김
+                  </p>
+                </div>
+              </div>
+              <div className='flex items-start space-x-4'>
+                <div className='text-3xl'>🥇</div>
+                <div>
+                  <h3 className='font-bold text-gray-800'>레이스 헌터</h3>
+                  <p className='text-gray-600'>
+                    다양한 러닝 대회를 찾아다니며 참여
+                  </p>
                 </div>
               </div>
             </div>
