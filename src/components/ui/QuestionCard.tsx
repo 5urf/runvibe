@@ -94,7 +94,7 @@ const QuestionCard = forwardRef<HTMLDivElement, IQuestionCardProps>(
         {!selectedAnswer && (
           <div className='text-center mt-6'>
             <p className='text-gray-500 text-sm'>
-              가장 가까운 답변을 선택해주세요
+              가장 가까운 답변을 선택해 주세요
             </p>
           </div>
         )}

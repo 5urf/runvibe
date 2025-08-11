@@ -43,7 +43,7 @@ const TestNavigation = forwardRef<HTMLDivElement, ITestNavigationProps>(
           variant='secondary'
           onClick={onPrevious}
           disabled={!canGoPrev}
-          className='min-w-[100px]'
+          className='min-w-[100px] disabled:opacity-50 disabled:cursor-not-allowed'
         >
           ← 이전
         </Button>
@@ -58,7 +58,7 @@ const TestNavigation = forwardRef<HTMLDivElement, ITestNavigationProps>(
           variant={isLastQuestion ? "gradient" : "primary"}
           onClick={onNext}
           disabled={!canGoNext || isLoading}
-          className='min-w-[100px]'
+          className='min-w-[100px] disabled:opacity-50 disabled:cursor-not-allowed'
         >
           {isLoading
             ? "완료 중..."
