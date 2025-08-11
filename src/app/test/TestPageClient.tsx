@@ -1,6 +1,7 @@
 "use client";
 
 import { ProgressBar, QuestionCard, TestNavigation } from "@/components/ui";
+import { useAnswerState } from "@/hooks/useAnswerState";
 import { useQuestionNavigation } from "@/hooks/useQuestionNavigation";
 import { useRouter } from "next/navigation";
 import React, { useCallback, useState } from "react";
@@ -24,21 +25,18 @@ export default function TestPageClient() {
     goToPrevious,
   } = useQuestionNavigation();
 
-  const [selectedAnswers, setSelectedAnswers] = useState<
-    Record<number, string>
-  >({});
+  const { selectedAnswers, answeredCount, hasAnswer, getAnswer, selectAnswer } =
+    useAnswerState();
+
   const [isCompleting, setIsCompleting] = useState(false);
 
-  const canGoNext = selectedAnswers[currentQuestionIndex] !== undefined;
+  const canGoNext = hasAnswer(currentQuestionIndex);
 
   const handleAnswerSelect = useCallback(
     (optionId: string) => {
-      setSelectedAnswers((prev) => ({
-        ...prev,
-        [currentQuestionIndex]: optionId,
-      }));
+      selectAnswer(currentQuestionIndex, optionId);
     },
-    [currentQuestionIndex]
+    [selectAnswer, currentQuestionIndex]
   );
 
   const handleCompleteTest = useCallback(async () => {
@@ -47,7 +45,7 @@ export default function TestPageClient() {
     try {
       const answersArray: string[] = [];
       for (let i = 0; i < totalQuestions; i++) {
-        const answer = selectedAnswers[i];
+        const answer = getAnswer(i);
         if (!answer) {
           throw new Error(`질문 ${i + 1}에 답변이 없습니다.`);
         }
@@ -77,7 +75,7 @@ export default function TestPageClient() {
     } finally {
       setIsCompleting(false);
     }
-  }, [selectedAnswers, router, totalQuestions]);
+  }, [getAnswer, router, totalQuestions]);
 
   const handleNext = useCallback(() => {
     if (!canGoNext) return;
@@ -105,7 +103,7 @@ export default function TestPageClient() {
         >
           <MemoizedQuestionCard
             question={currentQuestion}
-            selectedAnswer={selectedAnswers[currentQuestionIndex]}
+            selectedAnswer={getAnswer(currentQuestionIndex)}
             onAnswerSelect={handleAnswerSelect}
           />
         </section>
@@ -152,10 +150,8 @@ export default function TestPageClient() {
               <li>
                 현재 질문: {currentQuestionIndex + 1}/{totalQuestions}
               </li>
-              <li>선택된 답변들: {Object.keys(selectedAnswers).length}개</li>
-              <li>
-                현재 선택: {selectedAnswers[currentQuestionIndex] || "없음"}
-              </li>
+              <li>선택된 답변들: {answeredCount}개</li>
+              <li>현재 선택: {getAnswer(currentQuestionIndex) || "없음"}</li>
             </ul>
           </aside>
         )}
