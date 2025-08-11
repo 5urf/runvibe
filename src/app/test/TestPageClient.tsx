@@ -1,56 +1,52 @@
 "use client";
 
 import { ProgressBar, QuestionCard, TestNavigation } from "@/components/ui";
-import { questions } from "@/data/questions";
+import { useQuestionNavigation } from "@/hooks/useQuestionNavigation";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { toast } from "sonner";
 import { saveTestResult } from "./actions";
 
+const MemoizedProgressBar = React.memo(ProgressBar);
+const MemoizedQuestionCard = React.memo(QuestionCard);
+const MemoizedTestNavigation = React.memo(TestNavigation);
+
 export default function TestPageClient() {
   const router = useRouter();
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
+  const {
+    currentQuestionIndex,
+    currentQuestion,
+    totalQuestions,
+    isLastQuestion,
+    canGoPrev,
+    goToNext,
+    goToPrevious,
+  } = useQuestionNavigation();
+
   const [selectedAnswers, setSelectedAnswers] = useState<
     Record<number, string>
   >({});
   const [isCompleting, setIsCompleting] = useState(false);
 
-  const currentQuestion = questions[currentQuestionIndex];
-  const totalQuestions = questions.length;
-  const isLastQuestion = currentQuestionIndex === totalQuestions - 1;
   const canGoNext = selectedAnswers[currentQuestionIndex] !== undefined;
-  const canGoPrev = currentQuestionIndex > 0;
 
-  const handleAnswerSelect = (optionId: string) => {
-    setSelectedAnswers((prev) => ({
-      ...prev,
-      [currentQuestionIndex]: optionId,
-    }));
-  };
+  const handleAnswerSelect = useCallback(
+    (optionId: string) => {
+      setSelectedAnswers((prev) => ({
+        ...prev,
+        [currentQuestionIndex]: optionId,
+      }));
+    },
+    [currentQuestionIndex]
+  );
 
-  const handlePrevious = () => {
-    if (canGoPrev) {
-      setCurrentQuestionIndex((prev) => prev - 1);
-    }
-  };
-
-  const handleNext = () => {
-    if (!canGoNext) return;
-
-    if (isLastQuestion) {
-      handleCompleteTest();
-    } else {
-      setCurrentQuestionIndex((prev) => prev + 1);
-    }
-  };
-
-  const handleCompleteTest = async () => {
+  const handleCompleteTest = useCallback(async () => {
     setIsCompleting(true);
 
     try {
-      // 답변 배열 생성 (순서대로, 모든 질문에 답변이 있는지 확인)
       const answersArray: string[] = [];
-      for (let i = 0; i < questions.length; i++) {
+      for (let i = 0; i < totalQuestions; i++) {
         const answer = selectedAnswers[i];
         if (!answer) {
           throw new Error(`질문 ${i + 1}에 답변이 없습니다.`);
@@ -81,13 +77,23 @@ export default function TestPageClient() {
     } finally {
       setIsCompleting(false);
     }
-  };
+  }, [selectedAnswers, router, totalQuestions]);
+
+  const handleNext = useCallback(() => {
+    if (!canGoNext) return;
+
+    if (isLastQuestion) {
+      handleCompleteTest();
+    } else {
+      goToNext();
+    }
+  }, [canGoNext, isLastQuestion, handleCompleteTest, goToNext]);
 
   return (
     <main className='min-h-screen'>
       <div className='max-w-4xl mx-auto px-6 py-8'>
         <section aria-label='테스트 진행률' className='mb-8'>
-          <ProgressBar
+          <MemoizedProgressBar
             current={currentQuestionIndex + 1}
             total={totalQuestions}
           />
@@ -97,7 +103,7 @@ export default function TestPageClient() {
           aria-label={`질문 ${currentQuestionIndex + 1}`}
           className='mb-8'
         >
-          <QuestionCard
+          <MemoizedQuestionCard
             question={currentQuestion}
             selectedAnswer={selectedAnswers[currentQuestionIndex]}
             onAnswerSelect={handleAnswerSelect}
@@ -105,14 +111,14 @@ export default function TestPageClient() {
         </section>
 
         <div className='mb-8'>
-          <TestNavigation
+          <MemoizedTestNavigation
             currentIndex={currentQuestionIndex}
             totalQuestions={totalQuestions}
             canGoPrev={canGoPrev}
             canGoNext={canGoNext}
             isLastQuestion={isLastQuestion}
             isLoading={isCompleting}
-            onPrevious={handlePrevious}
+            onPrevious={goToPrevious}
             onNext={handleNext}
           />
         </div>
