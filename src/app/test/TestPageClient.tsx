@@ -3,18 +3,10 @@
 import { ProgressBar, QuestionCard, TestNavigation } from "@/components/ui";
 import { useAnswerState } from "@/hooks/useAnswerState";
 import { useQuestionNavigation } from "@/hooks/useQuestionNavigation";
-import { useRouter } from "next/navigation";
-import React, { useCallback, useState } from "react";
-import { toast } from "sonner";
-import { saveTestResult } from "./actions";
-
-const MemoizedProgressBar = React.memo(ProgressBar);
-const MemoizedQuestionCard = React.memo(QuestionCard);
-const MemoizedTestNavigation = React.memo(TestNavigation);
+import { useTestCompletion } from "@/hooks/useTestCompletion";
+import { useCallback } from "react";
 
 export default function TestPageClient() {
-  const router = useRouter();
-
   const {
     currentQuestionIndex,
     currentQuestion,
@@ -25,10 +17,10 @@ export default function TestPageClient() {
     goToPrevious,
   } = useQuestionNavigation();
 
-  const { selectedAnswers, answeredCount, hasAnswer, getAnswer, selectAnswer } =
+  const { answeredCount, hasAnswer, getAnswer, selectAnswer } =
     useAnswerState();
 
-  const [isCompleting, setIsCompleting] = useState(false);
+  const { isCompleting, completeTestWithValidation } = useTestCompletion();
 
   const canGoNext = hasAnswer(currentQuestionIndex);
 
@@ -39,59 +31,28 @@ export default function TestPageClient() {
     [selectAnswer, currentQuestionIndex]
   );
 
-  const handleCompleteTest = useCallback(async () => {
-    setIsCompleting(true);
-
-    try {
-      const answersArray: string[] = [];
-      for (let i = 0; i < totalQuestions; i++) {
-        const answer = getAnswer(i);
-        if (!answer) {
-          throw new Error(`질문 ${i + 1}에 답변이 없습니다.`);
-        }
-        answersArray.push(answer);
-      }
-
-      const resultId = await saveTestResult(answersArray);
-
-      toast.success("테스트가 완료되었습니다!", {
-        description: "결과를 확인해보세요 🎉",
-        duration: 2000,
-      });
-
-      router.push(`/result/${resultId}`);
-    } catch (error) {
-      console.error("테스트 완료 처리 중 오류:", error);
-
-      const errorMessage =
-        error instanceof Error
-          ? error.message
-          : "알 수 없는 오류가 발생했습니다.";
-
-      toast.error("오류가 발생했습니다", {
-        description: errorMessage,
-        duration: 4000,
-      });
-    } finally {
-      setIsCompleting(false);
-    }
-  }, [getAnswer, router, totalQuestions]);
-
   const handleNext = useCallback(() => {
     if (!canGoNext) return;
 
     if (isLastQuestion) {
-      handleCompleteTest();
+      completeTestWithValidation(getAnswer, totalQuestions);
     } else {
       goToNext();
     }
-  }, [canGoNext, isLastQuestion, handleCompleteTest, goToNext]);
+  }, [
+    canGoNext,
+    isLastQuestion,
+    completeTestWithValidation,
+    getAnswer,
+    totalQuestions,
+    goToNext,
+  ]);
 
   return (
     <main className='min-h-screen'>
       <div className='max-w-4xl mx-auto px-6 py-8'>
         <section aria-label='테스트 진행률' className='mb-8'>
-          <MemoizedProgressBar
+          <ProgressBar
             current={currentQuestionIndex + 1}
             total={totalQuestions}
           />
@@ -101,7 +62,7 @@ export default function TestPageClient() {
           aria-label={`질문 ${currentQuestionIndex + 1}`}
           className='mb-8'
         >
-          <MemoizedQuestionCard
+          <QuestionCard
             question={currentQuestion}
             selectedAnswer={getAnswer(currentQuestionIndex)}
             onAnswerSelect={handleAnswerSelect}
@@ -109,7 +70,7 @@ export default function TestPageClient() {
         </section>
 
         <div className='mb-8'>
-          <MemoizedTestNavigation
+          <TestNavigation
             currentIndex={currentQuestionIndex}
             totalQuestions={totalQuestions}
             canGoPrev={canGoPrev}
