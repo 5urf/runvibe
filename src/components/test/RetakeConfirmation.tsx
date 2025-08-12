@@ -30,7 +30,7 @@ const RetakeConfirmation = ({ existingResultId }: IRetakeConfirmationProps) => {
         duration: 2000,
       });
 
-      router.refresh();
+      router.push("/test");
     } catch (error) {
       console.error("재참여 처리 오류:", error);
 
