@@ -48,7 +48,7 @@ export const useAnswerState = () => {
   // 특정 질문의 답변 삭제
   const removeAnswer = useCallback((questionIndex: number) => {
     setSelectedAnswers((prev) => {
-      const { [questionIndex]: removed, ...rest } = prev;
+      const { [questionIndex]: _, ...rest } = prev;
       return rest;
     });
   }, []);

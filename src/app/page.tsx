@@ -105,7 +105,6 @@ export default async function HomePage() {
             {runnerTypes.map((type) => (
               <RunnerTypeCard
                 key={type.id}
-                id={type.id}
                 name={type.name}
                 emoji={type.emoji}
                 description={type.description}

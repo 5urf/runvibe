@@ -1,6 +1,6 @@
 "use client";
 
-import { ProgressBar, QuestionCard, TestNavigation } from "@/components/ui";
+import { ProgressBar, QuestionCard, TestNavigation } from "@/components/test";
 import { useAnswerState } from "@/hooks/useAnswerState";
 import { useQuestionNavigation } from "@/hooks/useQuestionNavigation";
 import { useTestCompletion } from "@/hooks/useTestCompletion";

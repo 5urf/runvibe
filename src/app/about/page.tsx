@@ -28,7 +28,7 @@ export default function AboutPage() {
             <div className='text-gray-700 text-lg leading-relaxed space-y-4'>
               <p>
                 러닝을 시작하는 많은 분들이{" "}
-                <strong>"나에게 맞는 러닝 방법이 뭘까?"</strong>
+                <strong>&quot;나에게 맞는 러닝 방법이 뭘까?&quot;</strong>
                 고민합니다. RunVibe는 이런 고민을 해결하기 위해 만들어졌어요.
               </p>
               <p>

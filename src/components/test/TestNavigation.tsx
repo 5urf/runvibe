@@ -38,7 +38,6 @@ const TestNavigation = forwardRef<HTMLDivElement, ITestNavigationProps>(
         )}
         {...props}
       >
-        {/* 이전 버튼 */}
         <Button
           variant='secondary'
           onClick={onPrevious}
@@ -47,13 +46,9 @@ const TestNavigation = forwardRef<HTMLDivElement, ITestNavigationProps>(
         >
           ← 이전
         </Button>
-
-        {/* 진행 상황 표시 */}
         <div className='text-sm text-gray-500'>
           {currentIndex + 1} / {totalQuestions}
         </div>
-
-        {/* 다음/완료 버튼 */}
         <Button
           variant={isLastQuestion ? "gradient" : "primary"}
           onClick={onNext}

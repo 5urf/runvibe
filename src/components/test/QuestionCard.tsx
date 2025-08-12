@@ -20,14 +20,11 @@ const QuestionCard = forwardRef<HTMLDivElement, IQuestionCardProps>(
         className={cn("card p-8 w-full mx-auto", className)}
         {...props}
       >
-        {/* 질문 제목 */}
         <div className='text-center mb-8'>
           <h2 className='text-2xl font-bold text-gray-800 mb-4 leading-relaxed'>
             {question.title}
           </h2>
         </div>
-
-        {/* 선택지 목록 */}
         <div className='space-y-4'>
           {question.options.map((option) => {
             const isSelected = selectedAnswer === option.id;
@@ -44,9 +41,7 @@ const QuestionCard = forwardRef<HTMLDivElement, IQuestionCardProps>(
                     : "border-gray-200 bg-white hover:border-primary-300 hover:shadow-md"
                 )}
                 aria-pressed={isSelected}
-                role='radio'
               >
-                {/* 이모지 */}
                 <div
                   className={cn(
                     "text-3xl transition-transform duration-200",
@@ -56,8 +51,6 @@ const QuestionCard = forwardRef<HTMLDivElement, IQuestionCardProps>(
                 >
                   {option.emoji}
                 </div>
-
-                {/* 텍스트 */}
                 <div className='flex-1'>
                   <span
                     className={cn(
@@ -68,8 +61,6 @@ const QuestionCard = forwardRef<HTMLDivElement, IQuestionCardProps>(
                     {option.text}
                   </span>
                 </div>
-
-                {/* 선택 표시 */}
                 {isSelected && (
                   <div className='text-primary-500'>
                     <svg
@@ -89,12 +80,10 @@ const QuestionCard = forwardRef<HTMLDivElement, IQuestionCardProps>(
             );
           })}
         </div>
-
-        {/* 선택 안내 텍스트 */}
         {!selectedAnswer && (
           <div className='text-center mt-6'>
             <p className='text-gray-500 text-sm'>
-              가장 가까운 답변을 선택해 주세요
+              가장 가까운 답변을 선택해 주세요.
             </p>
           </div>
         )}

@@ -1,4 +1,4 @@
-import RetakeConfirmation from "@/components/RetakeConfirmation";
+import RetakeConfirmation from "@/components/test/RetakeConfirmation";
 import { Metadata } from "next";
 import { getParticipationFromCookies } from "../../../lib/participationCookies";
 import TestPageClient from "./TestPageClient";

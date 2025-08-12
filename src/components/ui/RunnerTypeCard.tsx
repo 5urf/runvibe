@@ -2,7 +2,6 @@ import { HTMLAttributes, forwardRef } from "react";
 import { cn } from "../../../lib/utils";
 
 interface IRunnerTypeCardProps extends HTMLAttributes<HTMLDivElement> {
-  id: string;
   name: string;
   emoji: string;
   description: string;
@@ -10,7 +9,7 @@ interface IRunnerTypeCardProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const RunnerTypeCard = forwardRef<HTMLDivElement, IRunnerTypeCardProps>(
-  ({ id, name, emoji, description, background, className, ...props }, ref) => {
+  ({ name, emoji, description, background, className, ...props }, ref) => {
     return (
       <div
         ref={ref}
