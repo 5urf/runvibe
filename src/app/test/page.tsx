@@ -1,5 +1,8 @@
+import RetakeConfirmation from "@/components/RetakeConfirmation";
 import { Metadata } from "next";
+import { getParticipationFromCookies } from "../../../lib/participationCookies";
 import TestPageClient from "./TestPageClient";
+import { validateParticipation } from "./actions";
 
 export const metadata: Metadata = {
   title: "러닝 취향 분석 테스트 - RunVibe",
@@ -19,6 +22,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function TestPage() {
+export default async function TestPage() {
+  const cookieResultId = await getParticipationFromCookies();
+
+  if (cookieResultId) {
+    const isValid = await validateParticipation(cookieResultId);
+
+    if (isValid) {
+      return <RetakeConfirmation existingResultId={cookieResultId} />;
+    }
+  }
+
   return <TestPageClient />;
 }
