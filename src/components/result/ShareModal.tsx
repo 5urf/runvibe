@@ -2,7 +2,8 @@
 
 import { Button } from "@/components/ui";
 import { ITestResultWithTypeInfo } from "@/types/test";
-import { useRef } from "react";
+import html2canvas from "html2canvas";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { cn } from "../../../lib/utils";
 import ShareCard from "./ShareCard";
@@ -15,10 +16,51 @@ interface IShareModalProps {
 
 const ShareModal = ({ isOpen, onClose, result }: IShareModalProps) => {
   const shareCardRef = useRef<HTMLDivElement>(null);
+  const [isDownloading, setIsDownloading] = useState(false);
 
-  // TODO: html-to-canvas로 이미지 생성 및 다운로드
-  const handleDownload = () => {
-    console.log("다운로드 기능 - 구현 예정");
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  const handleDownload = async () => {
+    if (!shareCardRef.current) {
+      toast.error("이미지를 생성할 수 없습니다.");
+      return;
+    }
+
+    setIsDownloading(true);
+
+    try {
+      const canvas = await html2canvas(shareCardRef.current, {
+        scale: 2,
+        backgroundColor: null,
+        useCORS: true,
+        allowTaint: true,
+      });
+
+      const link = document.createElement("a");
+      link.download = `RunVibe-${result.typeInfo.name}-결과.png`;
+      link.href = canvas.toDataURL("image/png");
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      toast.success("이미지가 다운로드되었습니다!");
+    } catch (error) {
+      console.error("다운로드 실패:", error);
+      toast.error("이미지 다운로드에 실패했습니다.");
+    } finally {
+      setIsDownloading(false);
+    }
   };
 
   // 링크 복사
@@ -92,10 +134,10 @@ const ShareModal = ({ isOpen, onClose, result }: IShareModalProps) => {
           </button>
         </div>
 
-        {/* 공유 카드 미리보기 */}
+        {/* 공유 카드 */}
         <div className={cn("flex justify-center mb-6 sm:mb-8")}>
           <div ref={shareCardRef} className='w-full max-w-md'>
-            <ShareCard result={result} isPreview />
+            <ShareCard result={result} />
           </div>
         </div>
 
@@ -127,11 +169,20 @@ const ShareModal = ({ isOpen, onClose, result }: IShareModalProps) => {
             <Button
               variant='secondary'
               onClick={handleDownload}
+              disabled={isDownloading}
               className='w-full flex items-center justify-center space-x-2'
             >
-              <span className='text-xl'>💾</span>
-              <span>이미지 다운로드</span>
-              <span className='text-xs text-gray-500'>(3단계 예정)</span>
+              {isDownloading ? (
+                <>
+                  <div className='w-4 h-4 border-2 border-gray-600 border-t-transparent rounded-full animate-spin' />
+                  <span>생성 중...</span>
+                </>
+              ) : (
+                <>
+                  <span className='text-xl'>💾</span>
+                  <span>이미지 다운로드</span>
+                </>
+              )}
             </Button>
 
             {/* 링크 복사 */}

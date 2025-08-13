@@ -6,6 +6,9 @@
   body {
     @apply bg-hero-gradient font-sans antialiased;
   }
+  img {
+    @apply inline-block;
+  }
 }
 
 @layer components {
