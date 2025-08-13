@@ -1,11 +1,10 @@
-import { RetakeButton, ScoreBar } from "@/components/result";
-import { Button } from "@/components/ui";
+import { ScoreBar } from "@/components/result";
 import { getScoreData, getTypeBackgroundColor } from "@/utils/resultUtils";
 import { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { cn } from "../../../../lib/utils";
 import { getTestResult } from "./actions";
+import ResultPageClient from "./ResultPageClient";
 
 interface IResultPageProps {
   params: Promise<{ id: string }>;
@@ -45,7 +44,6 @@ export default async function ResultPage({ params }: IResultPageProps) {
   const scoreData = getScoreData(result);
   const maxScore = Math.max(...scoreData.map((s) => s.score));
   const bgColorClass = getTypeBackgroundColor(result.runnerType);
-  console.log("📢[page.tsx:47]: bgColorClass: ", bgColorClass);
 
   return (
     <main className='min-h-screen'>
@@ -105,29 +103,7 @@ export default async function ResultPage({ params }: IResultPageProps) {
           </div>
         </section>
 
-        <section className='space-y-4'>
-          <Button
-            variant='gradient'
-            size='lg'
-            className='w-full flex items-center justify-center space-x-2 text-lg py-4'
-          >
-            <span className='text-2xl'>📱</span>
-            <span>결과 공유하기</span>
-          </Button>
-
-          <div className='grid grid-cols-2 gap-3'>
-            <RetakeButton resultId={result.id} />
-            <Link href='/'>
-              <Button
-                variant='secondary'
-                className='w-full flex items-center justify-center space-x-2'
-              >
-                <span>🏠</span>
-                <span>홈으로</span>
-              </Button>
-            </Link>
-          </div>
-        </section>
+        <ResultPageClient result={result} />
 
         <footer className='text-center mt-8 p-6 bg-white/60 backdrop-blur-sm rounded-2xl'>
           <p className='text-sm text-gray-500 leading-relaxed'>
