@@ -16,6 +16,7 @@ interface IShareModalProps {
 }
 
 const ShareModal = ({ isOpen, onClose, result }: IShareModalProps) => {
+  const shareUrl = `${window.location.origin}/result/${result.id}`;
   const shareCardRef = useRef<HTMLDivElement>(null);
   const [isDownloading, setIsDownloading] = useState(false);
   const [isKakaoSharing, setIsKakaoSharing] = useState(false);
@@ -88,9 +89,8 @@ const ShareModal = ({ isOpen, onClose, result }: IShareModalProps) => {
 
   // 링크 복사
   const handleCopyLink = async () => {
-    const url = `${window.location.origin}/result/${result.id}`;
     try {
-      await navigator.clipboard.writeText(url);
+      await navigator.clipboard.writeText(shareUrl);
       toast.success("링크가 복사되었습니다!");
     } catch (error) {
       console.error("링크 복사 실패:", error);
@@ -99,11 +99,10 @@ const ShareModal = ({ isOpen, onClose, result }: IShareModalProps) => {
 
   // 네이티브 공유 (Web Share API)
   const handleNativeShare = async () => {
-    const url = `${window.location.origin}/result/${result.id}`;
     const shareData = {
       title: `나는 ${result.typeInfo.name}!`,
       text: `RunVibe에서 러닝 취향을 분석했어요! ${result.typeInfo.description}`,
-      url,
+      url: shareUrl,
     };
 
     try {

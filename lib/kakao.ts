@@ -117,7 +117,7 @@ export const createShareData = (
   return {
     title: `🏃‍♂️ 나는 ${runnerType}!`,
     description: `RunVibe 러닝 취향 분석 결과\n\n${emoji} ${description}\n\n✨ 나도 테스트해보기`,
-    linkUrl: `${window.location.origin}`,
+    linkUrl: `${window.location.origin}/result/${resultId}`,
     // TODO: 나중에 이미지 추가
     // imageUrl: `${window.location.origin}/api/og-image/${resultId}`,
   };

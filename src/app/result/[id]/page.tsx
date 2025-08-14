@@ -2,6 +2,7 @@ import { ScoreBar } from "@/components/result";
 import { getScoreData, getTypeBackgroundColor } from "@/utils/resultUtils";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getParticipationFromCookies } from "../../../../lib/participationCookies";
 import { cn } from "../../../../lib/utils";
 import { getTestResult } from "./actions";
 import ResultPageClient from "./ResultPageClient";
@@ -40,6 +41,9 @@ export default async function ResultPage({ params }: IResultPageProps) {
   if (!result) {
     notFound();
   }
+
+  const cookieResultId = await getParticipationFromCookies();
+  const isOwnResult = cookieResultId === result.id;
 
   const scoreData = getScoreData(result);
   const maxScore = Math.max(...scoreData.map((s) => s.score));
@@ -103,17 +107,19 @@ export default async function ResultPage({ params }: IResultPageProps) {
           </div>
         </section>
 
-        <ResultPageClient result={result} />
+        <ResultPageClient result={result} isOwnResult={isOwnResult} />
 
-        <footer className='text-center mt-8 p-6 bg-white/60 backdrop-blur-sm rounded-2xl'>
-          <p className='text-sm text-gray-500 leading-relaxed'>
-            친구들도 자신의 러닝 타입이 궁금하지 않을까요? 🤔
-            <br />
-            <span className='font-medium text-gray-600'>
-              결과를 공유해서 함께 테스트해보세요!
-            </span>
-          </p>
-        </footer>
+        {isOwnResult && (
+          <footer className='text-center mt-8 p-6 bg-white/60 backdrop-blur-sm rounded-2xl'>
+            <p className='text-sm text-gray-500 leading-relaxed'>
+              친구들도 자신의 러닝 타입이 궁금하지 않을까요? 🤔
+              <br />
+              <span className='font-medium text-gray-600'>
+                결과를 공유해서 함께 테스트해보세요!
+              </span>
+            </p>
+          </footer>
+        )}
 
         {process.env.NODE_ENV === "development" && (
           <details className='mt-8 p-4 bg-gray-100 rounded-lg text-xs'>
