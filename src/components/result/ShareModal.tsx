@@ -5,6 +5,7 @@ import { ITestResultWithTypeInfo } from "@/types/test";
 import html2canvas from "html2canvas";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
+import { createShareData, shareToKakao } from "../../../lib/kakao";
 import { cn } from "../../../lib/utils";
 import ShareCard from "./ShareCard";
 
@@ -17,6 +18,7 @@ interface IShareModalProps {
 const ShareModal = ({ isOpen, onClose, result }: IShareModalProps) => {
   const shareCardRef = useRef<HTMLDivElement>(null);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isKakaoSharing, setIsKakaoSharing] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -60,6 +62,27 @@ const ShareModal = ({ isOpen, onClose, result }: IShareModalProps) => {
       toast.error("이미지 다운로드에 실패했습니다.");
     } finally {
       setIsDownloading(false);
+    }
+  };
+
+  const handleKakaoShare = async () => {
+    setIsKakaoSharing(true);
+
+    try {
+      const shareData = createShareData(
+        result.typeInfo.name,
+        result.typeInfo.emoji,
+        result.typeInfo.description,
+        result.id
+      );
+
+      await shareToKakao(shareData);
+      toast.success("카카오톡으로 공유했습니다!");
+    } catch (error) {
+      console.error("카카오톡 공유 실패:", error);
+      toast.error("카카오톡 공유에 실패했습니다.");
+    } finally {
+      setIsKakaoSharing(false);
     }
   };
 
@@ -165,6 +188,26 @@ const ShareModal = ({ isOpen, onClose, result }: IShareModalProps) => {
               <span>공유하기</span>
             </Button>
 
+            <Button
+              variant='secondary'
+              size='lg'
+              onClick={handleKakaoShare}
+              disabled={isKakaoSharing}
+              className='w-full flex items-center justify-center space-x-2 bg-yellow-400 hover:bg-yellow-400 text-gray-800'
+            >
+              {isKakaoSharing ? (
+                <>
+                  <div className='w-4 h-4 border-2 border-gray-800 border-t-transparent rounded-full animate-spin' />
+                  <span>공유 중...</span>
+                </>
+              ) : (
+                <>
+                  <span className='text-2xl'>💬</span>
+                  <span>카카오톡으로 공유하기</span>
+                </>
+              )}
+            </Button>
+
             {/* 이미지 다운로드 */}
             <Button
               variant='secondary'
@@ -203,8 +246,8 @@ const ShareModal = ({ isOpen, onClose, result }: IShareModalProps) => {
               <div className='text-xs sm:text-sm text-blue-700'>
                 <div className='font-semibold mb-1'>공유 팁</div>
                 <div className='leading-relaxed'>
-                  카카오톡, 인스타그램 스토리에 공유하거나 이미지를 다운로드해서
-                  SNS에 업로드해보세요!
+                  카카오톡으로 바로 공유하거나 이미지를 다운로드해서 인스타그램
+                  스토리에 업로드해보세요!
                 </div>
               </div>
             </div>
