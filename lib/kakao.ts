@@ -62,7 +62,7 @@ export interface KakaoShareData {
   title: string;
   description: string;
   linkUrl: string;
-  imageUrl?: string; // TODO: 나중에 이미지 추가 시 사용
+  imageUrl: string;
 }
 
 export const shareToKakao = async (data: KakaoShareData) => {
@@ -79,12 +79,8 @@ export const shareToKakao = async (data: KakaoShareData) => {
         mobileWebUrl: data.linkUrl,
         webUrl: data.linkUrl,
       },
+      imageUrl: data.imageUrl,
     };
-
-    // TODO: 이미지 추가 시 주석 해제
-    // if (data.imageUrl && data.imageUrl.trim() !== '' && data.imageUrl.startsWith('http')) {
-    //   content.imageUrl = data.imageUrl;
-    // }
 
     window.Kakao.Share.sendDefault({
       objectType: "feed",
@@ -114,11 +110,12 @@ export const createShareData = (
   description: string,
   resultId: string
 ): KakaoShareData => {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || window.location.origin;
+
   return {
     title: `🏃‍♂️ 나는 ${runnerType}!`,
     description: `RunVibe 러닝 취향 분석 결과\n\n${emoji} ${description}\n\n✨ 나도 테스트해보기`,
-    linkUrl: `${window.location.origin}/result/${resultId}`,
-    // TODO: 나중에 이미지 추가
-    // imageUrl: `${window.location.origin}/api/og-image/${resultId}`,
+    linkUrl: `${baseUrl}/result/${resultId}`,
+    imageUrl: `${baseUrl}/api/og-image/${resultId}`,
   };
 };

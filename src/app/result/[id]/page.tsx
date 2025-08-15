@@ -23,17 +23,55 @@ export async function generateMetadata({
     };
   }
 
+  const ogImageUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/og-image/${id}`;
+
   return {
     title: `나는 ${result.typeInfo.name}!`,
     description: `${result.typeInfo.description}`,
+
     openGraph: {
       title: `나는 ${result.typeInfo.name}!`,
       description: result.typeInfo.description,
       type: "website",
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/result/${id}`,
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: `${result.typeInfo.name} - RunVibe 러닝 취향 분석 결과`,
+        },
+      ],
+      siteName: "RunVibe",
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: `나는 ${result.typeInfo.name}!`,
+      description: result.typeInfo.description,
+      images: [ogImageUrl],
+      site: "@RunVibe",
+    },
+
+    keywords: [
+      "러닝",
+      "취향분석",
+      "러닝테스트",
+      "MBTI",
+      "러너타입",
+      result.typeInfo.name,
+      "RunVibe",
+      "마라톤",
+      "조깅",
+    ],
+
+    other: {
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:type": "image/png",
     },
   };
 }
-
 export default async function ResultPage({ params }: IResultPageProps) {
   const { id } = await params;
   const result = await getTestResult(id);
