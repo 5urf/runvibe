@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui";
+import { useShareUrl } from "@/hooks/useShareUrl";
 import { ITestResultWithTypeInfo } from "@/types/test";
 import html2canvas from "html2canvas";
 import { useEffect, useRef, useState } from "react";
@@ -16,7 +17,7 @@ interface IShareModalProps {
 }
 
 const ShareModal = ({ isOpen, onClose, result }: IShareModalProps) => {
-  const shareUrl = `${window.location.origin}/result/${result.id}`;
+  const shareUrl = useShareUrl(result.id);
   const shareCardRef = useRef<HTMLDivElement>(null);
   const [isDownloading, setIsDownloading] = useState(false);
   const [isKakaoSharing, setIsKakaoSharing] = useState(false);
@@ -94,6 +95,7 @@ const ShareModal = ({ isOpen, onClose, result }: IShareModalProps) => {
       toast.success("링크가 복사되었습니다!");
     } catch (error) {
       console.error("링크 복사 실패:", error);
+      toast.error("링크 복사에 실패했습니다.");
     }
   };
 
