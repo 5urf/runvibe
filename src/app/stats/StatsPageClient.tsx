@@ -1,6 +1,10 @@
 "use client";
 
-import { ParticipantsCard, PodiumChart } from "@/components/stats";
+import {
+  ParticipantsCard,
+  PodiumChart,
+  TypeDistributionChart,
+} from "@/components/stats";
 import { Button } from "@/components/ui";
 import { useStats } from "@/hooks/useStats";
 import Link from "next/link";
@@ -40,6 +44,7 @@ export default function StatsPageClient() {
         </div>
         <ParticipantsCard totalParticipants={stats.totalParticipants} />
         <PodiumChart podium={stats.podium} />
+        <TypeDistributionChart allTypes={stats.allTypes} />
         <div className='text-center'>
           <Link href='/test'>
             <Button variant='gradient' size='lg' className='px-8'>
