@@ -36,3 +36,18 @@ export const getScoreData = (scores: {
 export const getTypeBackgroundColor = (runnerType: string): string => {
   return typeColors[runnerType as RunnerType] || typeColors.slow;
 };
+
+// 타입별 보더 컬러 매핑
+export const typeBorderColors = {
+  slow: "border-runner-slow/30",
+  marathoner: "border-runner-marathoner/30",
+  trail: "border-runner-trail/30",
+  crew: "border-runner-crew/30",
+  style: "border-runner-style/30",
+  race: "border-runner-race/30",
+} as const;
+
+// 보더 컬러 클래스 가져오기
+export const getTypeBorderColor = (runnerType: string): string => {
+  return typeBorderColors[runnerType as RunnerType] || typeBorderColors.slow;
+};
