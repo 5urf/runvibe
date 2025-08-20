@@ -3,6 +3,8 @@
 import {
   ParticipantsCard,
   PodiumChart,
+  StatsError,
+  StatsLoading,
   TypeDistributionChart,
 } from "@/components/stats";
 import { Button } from "@/components/ui";
@@ -10,11 +12,17 @@ import { useStats } from "@/hooks/useStats";
 import Link from "next/link";
 
 export default function StatsPageClient() {
-  const { stats } = useStats();
+  const { stats, loading, error, retry } = useStats();
 
-  if (!stats) return null;
+  if (loading) {
+    return <StatsLoading />;
+  }
 
-  if (stats.totalParticipants <= 0) {
+  if (error) {
+    return <StatsError onRetry={retry} error={error} />;
+  }
+
+  if (!stats || stats.totalParticipants <= 0) {
     return (
       <div className='min-h-screen flex items-center justify-center'>
         <div className='text-center max-w-md mx-auto p-6'>

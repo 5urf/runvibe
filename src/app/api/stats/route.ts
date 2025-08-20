@@ -30,9 +30,8 @@ export async function GET() {
     });
   } catch (error) {
     console.error("통계 API 오류:", error);
-    return NextResponse.json(
-      { error: "통계를 불러올 수 없습니다." },
-      { status: 500 }
-    );
+    return new NextResponse("통계를 불러올 수 없습니다.", {
+      status: 500,
+    });
   }
 }
