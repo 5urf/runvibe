@@ -1,4 +1,5 @@
 import { Button, RunnerTypeCard } from "@/components/ui";
+import Image from "next/image";
 import Link from "next/link";
 import { getStats } from "../../lib/stats";
 
@@ -55,13 +56,16 @@ export default async function HomePage() {
       <div className='max-w-4xl mx-auto px-6 pb-12'>
         {/* Hero Section */}
         <section className='text-center py-16'>
-          {/* Hero Image Placeholder */}
+          {/* Hero Image */}
           <div className='mb-8'>
-            <div className='w-full h-64 bg-gradient-to-r from-primary-400 to-pink-400 rounded-2xl mx-auto shadow-lg flex items-center justify-center'>
-              <div className='text-center text-white'>
-                <div className='text-6xl mb-4'>🏃‍♂️</div>
-                <div className='text-xl font-semibold'>Dynamic Runner</div>
-              </div>
+            <div className='relative w-full aspect-[5/2] rounded-lg overflow-hidden shadow-md'>
+              <Image
+                src='/images/hero-runner.png'
+                alt='RunVibe 러닝 캐릭터'
+                fill
+                className='object-cover'
+                priority
+              />
             </div>
           </div>
 
