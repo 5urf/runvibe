@@ -1,4 +1,4 @@
-import { Header } from "@/components/ui";
+import { Footer, Header } from "@/components/ui";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
@@ -68,9 +68,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='ko' className={inter.variable}>
-      <body className={inter.className}>
+      <body className={`${inter.className} flex flex-col min-h-screen`}>
         <Header />
-        {children}
+        <div className='flex-grow'>{children}</div>
+        <Footer />
         <Toaster position='top-center' richColors />
       </body>
     </html>
