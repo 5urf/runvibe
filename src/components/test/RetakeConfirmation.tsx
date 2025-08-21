@@ -44,7 +44,7 @@ const RetakeConfirmation = ({ existingResultId }: IRetakeConfirmationProps) => {
   };
 
   return (
-    <main className='min-h-screen '>
+    <main>
       <div className='max-w-4xl mx-auto px-6 py-8'>
         <article className='max-w-2xl mx-auto bg-white rounded-2xl shadow-lg border overflow-hidden'>
           <header className='bg-gradient-to-r from-blue-50 to-indigo-100 px-8 py-12 text-center'>

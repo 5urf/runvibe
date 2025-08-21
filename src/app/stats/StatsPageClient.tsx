@@ -24,7 +24,7 @@ export default function StatsPageClient() {
 
   if (!stats || stats.totalParticipants <= 0) {
     return (
-      <div className='min-h-screen flex items-center justify-center'>
+      <div className='flex items-center justify-center'>
         <div className='text-center max-w-md mx-auto p-6'>
           <div className='text-6xl mb-4'>📊</div>
           <h2 className='text-2xl font-bold text-gray-800 mb-2'>
@@ -42,7 +42,7 @@ export default function StatsPageClient() {
   }
 
   return (
-    <div className='min-h-screen'>
+    <div>
       <div className='max-w-4xl mx-auto px-6 py-8'>
         <div className='text-center mb-8'>
           <h1 className='text-3xl md:text-4xl font-bold text-gray-800 mb-2'>

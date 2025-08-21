@@ -8,7 +8,7 @@ interface IStatsErrorProps {
 
 const StatsError = ({ onRetry, error }: IStatsErrorProps) => {
   return (
-    <div className='min-h-screen flex items-center justify-center'>
+    <div className='flex items-center justify-center'>
       <div className='text-center max-w-md mx-auto p-6'>
         <div className='text-6xl mb-4'>😵</div>
         <h2 className='text-2xl font-bold text-gray-800 mb-2'>
