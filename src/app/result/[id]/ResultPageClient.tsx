@@ -54,6 +54,15 @@ const ResultPageClient = ({ result, isOwnResult }: IResultPageClientProps) => {
                 </Button>
               </Link>
             </div>
+            <div className='mt-6 pt-4 border-t border-gray-100 text-center'>
+              <Link href='/stats'>
+                <button className='text-gray-500 hover:text-primary-600 transition-colors duration-200 text-sm group'>
+                  <span className='group-hover:underline'>
+                    전체 통계가 궁금하다면? 📊
+                  </span>
+                </button>
+              </Link>
+            </div>
           </>
         ) : (
           <Button
