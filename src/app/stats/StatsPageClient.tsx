@@ -7,7 +7,7 @@ import {
   StatsLoading,
   TypeDistributionChart,
 } from "@/components/stats";
-import { Button } from "@/components/ui";
+import { BackButton, Button } from "@/components/ui";
 import { useStats } from "@/hooks/useStats";
 import Link from "next/link";
 
@@ -44,6 +44,7 @@ export default function StatsPageClient() {
   return (
     <div>
       <div className='max-w-4xl mx-auto px-6 py-8'>
+        <BackButton size='lg' />
         <div className='text-center mb-8'>
           <h1 className='text-3xl md:text-4xl font-bold text-gray-800 mb-2'>
             📊 러닝 취향 통계
