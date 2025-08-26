@@ -3,6 +3,11 @@ import { getScoreData, getTypeBackgroundColor } from "@/utils/resultUtils";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getParticipationFromCookies } from "../../../../lib/participationCookies";
+import {
+  baseKeywords,
+  runnerTypeKeywords,
+  testKeywords,
+} from "../../../../lib/seo";
 import { cn } from "../../../../lib/utils";
 import { getTestResult } from "./actions";
 import ResultPageClient from "./ResultPageClient";
@@ -23,12 +28,21 @@ export async function generateMetadata({
     };
   }
 
+  const resultPageKeywords = [
+    ...baseKeywords,
+    ...runnerTypeKeywords,
+    ...testKeywords,
+    result.typeInfo.name,
+    "운동결과",
+    "나의 러닝 스타일",
+  ];
+
   const ogImageUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/og-image/${id}`;
 
   return {
     title: `나는 ${result.typeInfo.name}!`,
     description: `${result.typeInfo.description}`,
-
+    keywords: [...new Set(resultPageKeywords)],
     openGraph: {
       title: `나는 ${result.typeInfo.name}!`,
       description: result.typeInfo.description,
@@ -44,7 +58,6 @@ export async function generateMetadata({
       ],
       siteName: "RunVibe",
     },
-
     twitter: {
       card: "summary_large_image",
       title: `나는 ${result.typeInfo.name}!`,
@@ -52,19 +65,6 @@ export async function generateMetadata({
       images: [ogImageUrl],
       site: "@RunVibe",
     },
-
-    keywords: [
-      "러닝",
-      "취향분석",
-      "러닝테스트",
-      "MBTI",
-      "러너타입",
-      result.typeInfo.name,
-      "RunVibe",
-      "마라톤",
-      "조깅",
-    ],
-
     other: {
       "og:image:width": "1200",
       "og:image:height": "630",

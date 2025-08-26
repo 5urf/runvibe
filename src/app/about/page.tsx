@@ -1,28 +1,26 @@
 import { Button } from "@/components/ui";
 import { Metadata } from "next";
 import Link from "next/link";
+import {
+  baseKeywords,
+  runnerTypeKeywords,
+  testKeywords,
+} from "../../../lib/seo";
+
+const aboutPageKeywords = [
+  ...baseKeywords,
+  ...runnerTypeKeywords,
+  ...testKeywords,
+  "서비스소개",
+  "운동성향",
+  "러닝 스타일 종류",
+];
 
 export const metadata: Metadata = {
   title: "서비스 소개",
   description:
     "러닝에도 MBTI가 있다면? RunVibe로 나만의 러닝 성향을 분석하고 6가지 러너 타입을 확인해보세요. 15개 질문으로 당신의 러닝 스타일을 발견하세요.",
-  keywords: [
-    "러닝",
-    "취향분석",
-    "러닝테스트",
-    "MBTI",
-    "러너타입",
-    "슬로우러너",
-    "마라토너",
-    "트레일러너",
-    "크루러너",
-    "패션러너",
-    "레이스헌터",
-    "RunVibe",
-    "서비스소개",
-    "마라톤",
-    "조깅",
-  ],
+  keywords: [...new Set(aboutPageKeywords)],
   openGraph: {
     title: "RunVibe 서비스 소개 - 나만의 러닝 성향 분석",
     description:

@@ -2,6 +2,7 @@ import { Footer, Header } from "@/components/ui";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
+import { baseKeywords, healthKeywords } from "../../lib/seo";
 import "./globals.css";
 
 const inter = Inter({
@@ -11,6 +12,15 @@ const inter = Inter({
   display: "swap",
 });
 
+const layoutKeywords = [
+  ...baseKeywords,
+  ...healthKeywords,
+  "운동습관분석",
+  "달리기습관",
+  "피트니스테스트",
+  "스포츠심리",
+];
+
 export const metadata: Metadata = {
   title: {
     template: "%s - RunVibe",
@@ -18,8 +28,7 @@ export const metadata: Metadata = {
   },
   description:
     "MBTI처럼 재미있는 러닝 취향 분석 서비스. 15개 질문으로 나만의 러닝 스타일을 찾아보세요.",
-  keywords:
-    "러닝, 취향분석, 러닝테스트, MBTI, 러너타입, 마라톤, 조깅, 러닝크루",
+  keywords: [...new Set(layoutKeywords)],
   authors: [{ name: "RunVibe Team" }],
   creator: "RunVibe",
   publisher: "RunVibe",
