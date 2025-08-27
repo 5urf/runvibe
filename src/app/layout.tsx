@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   authors: [{ name: "RunVibe Team" }],
   creator: "RunVibe",
   publisher: "RunVibe",
-  metadataBase: new URL("https://runvibe.vercel.app"), // 실제 배포 URL로 변경
+  metadataBase: new URL("https://runvibe.vercel.app"), //TODO -  실제 배포 URL로 변경
   alternates: {
     canonical: "/",
   },
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     siteName: "RunVibe",
     images: [
       {
-        url: "/og-image.png", // TODO: OpenGraph 이미지 추가
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "RunVibe - 러닝 취향 분석 서비스",
