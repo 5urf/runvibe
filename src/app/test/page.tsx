@@ -24,11 +24,15 @@ export const metadata: Metadata = {
     description: "15개 질문으로 나만의 러닝 스타일을 찾아보세요",
     type: "website",
     url: "/test",
+    siteName: "RunVibe",
   },
   twitter: {
     card: "summary_large_image",
     title: "러닝 취향 분석 테스트 - RunVibe",
     description: "15개 질문으로 나만의 러닝 스타일을 찾아보세요",
+  },
+  alternates: {
+    canonical: "/test",
   },
 };
 

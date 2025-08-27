@@ -58,12 +58,14 @@ export async function generateMetadata({
       ],
       siteName: "RunVibe",
     },
+    alternates: {
+      canonical: `/result/${id}`,
+    },
     twitter: {
       card: "summary_large_image",
       title: `나는 ${result.typeInfo.name}!`,
       description: result.typeInfo.description,
       images: [ogImageUrl],
-      site: "@RunVibe",
     },
     other: {
       "og:image:width": "1200",
