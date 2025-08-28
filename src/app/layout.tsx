@@ -32,7 +32,9 @@ export const metadata: Metadata = {
   authors: [{ name: "RunVibe Team" }],
   creator: "RunVibe",
   publisher: "RunVibe",
-  metadataBase: new URL("https://runvibe.vercel.app"), //TODO -  실제 배포 URL로 변경
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_BASE_URL || "https://runvibe.vercel.app"
+  ),
   alternates: {
     canonical: "/",
   },
