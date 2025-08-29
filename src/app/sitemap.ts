@@ -1,8 +1,8 @@
+import { SITE_URL } from "@/constants/urlConfig";
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL || "https://runvibe.vercel.app";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || SITE_URL;
   const currentDate = new Date().toISOString();
 
   return [

@@ -1,4 +1,5 @@
 import { Footer, Header } from "@/components/ui";
+import { SITE_URL } from "@/constants/urlConfig";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
@@ -32,9 +33,7 @@ export const metadata: Metadata = {
   authors: [{ name: "RunVibe Team" }],
   creator: "RunVibe",
   publisher: "RunVibe",
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_BASE_URL || "https://runvibe.vercel.app"
-  ),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || SITE_URL),
   alternates: {
     canonical: "/",
   },
