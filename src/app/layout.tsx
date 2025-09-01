@@ -65,9 +65,10 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    // TODO: naver Search Console 인증 후 추가
     google: "UR0dTylnzFpHRyttu74-gDThgoSjlewNV1uJy_S9yxQ",
-    // naver: "naver-verification-code"
+    other: {
+      "naver-site-verification": "de84355804d87cc24c454f2ce03bcf61bc4725cc",
+    },
   },
   icons: {
     icon: [
