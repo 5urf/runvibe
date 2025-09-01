@@ -65,8 +65,8 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    // TODO: Google Search Console 인증 후 추가
-    // google: "google-verification-code",
+    // TODO: naver Search Console 인증 후 추가
+    google: "UR0dTylnzFpHRyttu74-gDThgoSjlewNV1uJy_S9yxQ",
     // naver: "naver-verification-code"
   },
   icons: {
