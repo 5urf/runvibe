@@ -83,7 +83,7 @@ export default async function HomePage() {
               <span className='block mb-1'>러닝 스타일을 찾아보세요.</span>
             </p>
             <p className='text-sm sm:text-base md:text-lg text-gray-500 mt-3 px-4'>
-              MBTI처럼 재미있게, 하지만 더 실용적으로!
+              MBTI보다 재미있고, 빠르게!
             </p>
           </div>
 
@@ -111,7 +111,7 @@ export default async function HomePage() {
             당신은 어떤 타입의 러너인가요?
           </p>
 
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6'>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
             {runnerTypes.map((type) => (
               <RunnerTypeCard
                 key={type.id}
