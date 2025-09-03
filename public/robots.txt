@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://runvibe.vercel.app/sitemap.xml
+Sitemap: https://runvibe-kr.vercel.app/sitemap.xml
