@@ -66,7 +66,7 @@ const PodiumChart = ({ podium }: IPodiumChartProps) => {
                 {typeInfo?.name}
               </div>
               <div className='text-sm md:text-xl font-bold text-gray-800 mb-1'>
-                {item.percentage.toFixed(1)}%
+                {item.percentage}%
               </div>
               <div className='text-xs text-gray-500'>
                 {item.count.toLocaleString()}명

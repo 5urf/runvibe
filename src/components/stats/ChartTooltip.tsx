@@ -22,7 +22,7 @@ const ChartTooltip = ({ active, payload }: IChartTooltipProps) => {
         {data.emoji} {data.name}
       </p>
       <p className='text-primary-500 text-sm'>
-        {data.value.toFixed(1)}% ({data.count.toLocaleString()}명)
+        {data.value}% ({data.count.toLocaleString()}명)
       </p>
     </div>
   );

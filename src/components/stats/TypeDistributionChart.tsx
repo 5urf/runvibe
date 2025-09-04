@@ -105,7 +105,7 @@ const TypeDistributionChart = ({ allTypes }: ITypeDistributionChartProps) => {
               {item.emoji} {item.name}
             </span>
             <span className='text-sm text-gray-500 flex-shrink-0'>
-              {item.value.toFixed(1)}%
+              {item.value}%
             </span>
           </div>
         ))}
