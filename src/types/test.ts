@@ -42,16 +42,3 @@ export interface IRunnerTypeInfo {
 export interface ITestResultWithTypeInfo extends TestResult {
   typeInfo: IRunnerTypeInfo;
 }
-
-// 통계용 타입
-export interface IStatsData {
-  totalParticipants: number;
-  typeDistribution: Array<{
-    type: string;
-    name: string;
-    emoji: string;
-    color: string;
-    count: number;
-    percentage: number;
-  }>;
-}
