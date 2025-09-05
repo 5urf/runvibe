@@ -19,7 +19,7 @@ export async function getStats(): Promise<IStatsData> {
         count: item._count.runnerType,
         percentage:
           totalParticipants > 0
-            ? (item._count.runnerType / totalParticipants) * 100
+            ? Math.round((item._count.runnerType / totalParticipants) * 100)
             : 0,
       }))
       .sort((a, b) => b.percentage - a.percentage);
