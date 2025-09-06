@@ -99,28 +99,23 @@ export default async function ResultPage({ params }: IResultPageProps) {
           )}
         >
           <div className='absolute inset-0 bg-gradient-to-br from-white/20 to-transparent pointer-events-none' />
-
           <div className='relative z-10'>
             <div className='text-8xl mb-4 animate-bounce'>
               {result.typeInfo.emoji}
             </div>
-
             <h1 className='text-3xl font-bold text-gray-800 mb-3'>
               나는{" "}
               <span className='text-primary-600'>{result.typeInfo.name}</span>!
             </h1>
-
             <p className='text-gray-600 leading-relaxed'>
               {result.typeInfo.description}
             </p>
           </div>
         </section>
-
         <section className='bg-white rounded-3xl p-8 mb-8 shadow-card'>
           <h2 className='text-xl font-bold text-gray-800 mb-6 text-center'>
             📊 나의 러닝 성향 분석
           </h2>
-
           <div className='space-y-1'>
             {scoreData.map((scoreItem) => (
               <ScoreBar
@@ -133,7 +128,6 @@ export default async function ResultPage({ params }: IResultPageProps) {
               />
             ))}
           </div>
-
           <div className='mt-6 p-4 bg-primary-50 rounded-2xl'>
             <div className='flex items-center justify-center space-x-2'>
               <span className='text-primary-600'>✨</span>
@@ -146,9 +140,7 @@ export default async function ResultPage({ params }: IResultPageProps) {
             </div>
           </div>
         </section>
-
         <ResultPageClient result={result} isOwnResult={isOwnResult} />
-
         {isOwnResult && (
           <footer className='text-center mt-8 p-6 bg-white/60 backdrop-blur-sm rounded-2xl'>
             <p className='text-sm text-gray-500 leading-relaxed'>
@@ -159,25 +151,6 @@ export default async function ResultPage({ params }: IResultPageProps) {
               </span>
             </p>
           </footer>
-        )}
-
-        {process.env.NODE_ENV === "development" && (
-          <details className='mt-8 p-4 bg-gray-100 rounded-lg text-xs'>
-            <summary className='cursor-pointer font-semibold text-gray-700 mb-2'>
-              🔍 디버그 정보
-            </summary>
-            <div className='space-y-1 text-gray-600'>
-              <div>
-                <strong>결과 ID:</strong> {result.id}
-              </div>
-              <div>
-                <strong>러너 타입:</strong> {result.runnerType}
-              </div>
-              <div>
-                <strong>최고 점수:</strong> {maxScore}점
-              </div>
-            </div>
-          </details>
         )}
       </div>
     </main>

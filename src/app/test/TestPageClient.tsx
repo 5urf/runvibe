@@ -17,8 +17,7 @@ export default function TestPageClient() {
     goToPrevious,
   } = useQuestionNavigation();
 
-  const { answeredCount, hasAnswer, getAnswer, selectAnswer } =
-    useAnswerState();
+  const { hasAnswer, getAnswer, selectAnswer } = useAnswerState();
 
   const { isCompleting, completeTestWithValidation } = useTestCompletion();
 
@@ -57,7 +56,6 @@ export default function TestPageClient() {
             total={totalQuestions}
           />
         </section>
-
         <section
           aria-label={`질문 ${currentQuestionIndex + 1}`}
           className='mb-8'
@@ -68,7 +66,6 @@ export default function TestPageClient() {
             onAnswerSelect={handleAnswerSelect}
           />
         </section>
-
         <div className='mb-8'>
           <TestNavigation
             currentIndex={currentQuestionIndex}
@@ -81,7 +78,6 @@ export default function TestPageClient() {
             onNext={handleNext}
           />
         </div>
-
         {!canGoNext && (
           <aside className='text-center mt-6' role='status' aria-live='polite'>
             <p className='text-gray-500'>
@@ -89,8 +85,6 @@ export default function TestPageClient() {
             </p>
           </aside>
         )}
-
-        {/* 완료 중 상태 표시 */}
         {isCompleting && (
           <div className='fixed inset-0 bg-black/50 flex items-center justify-center z-50'>
             <div className='bg-white rounded-2xl p-8 max-w-sm mx-6 text-center'>
@@ -101,20 +95,6 @@ export default function TestPageClient() {
               <p className='text-gray-600'>잠시만 기다려주세요 ✨</p>
             </div>
           </div>
-        )}
-
-        {/* 디버그 정보 (개발 중에만) */}
-        {process.env.NODE_ENV === "development" && (
-          <aside className='mt-8 p-4 bg-gray-100 rounded-lg text-xs text-gray-600'>
-            <h3 className='font-semibold mb-2'>디버그 정보</h3>
-            <ul>
-              <li>
-                현재 질문: {currentQuestionIndex + 1}/{totalQuestions}
-              </li>
-              <li>선택된 답변들: {answeredCount}개</li>
-              <li>현재 선택: {getAnswer(currentQuestionIndex) || "없음"}</li>
-            </ul>
-          </aside>
         )}
       </div>
     </main>
