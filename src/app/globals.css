@@ -16,6 +16,7 @@
   .btn-base {
     @apply rounded-full font-semibold shadow-button;
     @apply transform hover:scale-105 transition-all duration-200;
+    @apply touch-manipulation;
   }
 
   .btn-primary {
