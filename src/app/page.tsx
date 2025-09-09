@@ -49,7 +49,13 @@ const runnerTypes = [
 ];
 
 export default async function HomePage() {
-  const { totalParticipants } = await getStats();
+  let totalParticipants = 0;
+  try {
+    const stats = await getStats();
+    totalParticipants = stats.totalParticipants;
+  } catch (error) {
+    console.error("Failed to fetch stats for HomePage:", error);
+  }
 
   return (
     <div className='min-h-screen'>
