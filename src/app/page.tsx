@@ -1,52 +1,26 @@
 import { Button, RunnerTypeCard } from "@/components/ui";
+import { runnerTypeInfo } from "@/data/runnerTypeInfo";
 import Image from "next/image";
 import Link from "next/link";
 import { getStats } from "../../lib/stats";
 
-const runnerTypes = [
-  {
-    id: "slow",
-    name: "슬로우 러너",
-    emoji: "🌱",
-    color: "bg-runner-slow border-runner-slow/30",
-    description: "느린 페이스로 오래 달리며 여유와 회복을 중시하는 타입",
-  },
-  {
-    id: "marathoner",
-    name: "마라토너",
-    emoji: "🏅",
-    color: "bg-runner-marathoner border-runner-marathoner/30",
-    description: "장거리에서 한계를 시험하고 성취를 추구하는 타입",
-  },
-  {
-    id: "trail",
-    name: "트레일 러너",
-    emoji: "🏔️",
-    color: "bg-runner-trail border-runner-trail/30",
-    description: "자연과 지형을 즐기며 새로운 코스를 탐험하는 타입",
-  },
-  {
-    id: "crew",
-    name: "크루 러너",
-    emoji: "👥",
-    color: "bg-runner-crew border-runner-crew/30",
-    description: "함께 뛰는 동기부여를 선호하고 사회적 활동을 즐기는 타입",
-  },
-  {
-    id: "style",
-    name: "패션 러너",
-    emoji: "👟",
-    color: "bg-runner-style border-runner-style/30",
-    description: "러닝을 패션과 라이프스타일의 일부로 즐기는 타입",
-  },
-  {
-    id: "race",
-    name: "레이스 헌터",
-    emoji: "🥇",
-    color: "bg-runner-race border-runner-race/30",
-    description: "다양한 러닝 대회를 찾아다니며 참여하는 타입",
-  },
-];
+const runnerTypes = Object.entries(runnerTypeInfo).map(([id, info], index) => {
+  const colors = [
+    "bg-runner-slow border-runner-slow/30",
+    "bg-runner-marathoner border-runner-marathoner/30",
+    "bg-runner-trail border-runner-trail/30",
+    "bg-runner-crew border-runner-crew/30",
+    "bg-runner-style border-runner-style/30",
+    "bg-runner-race border-runner-race/30",
+  ];
+  return {
+    id,
+    name: info.name,
+    emoji: info.emoji,
+    description: info.description,
+    color: colors[index],
+  };
+});
 
 export default async function HomePage() {
   let totalParticipants = 0;
