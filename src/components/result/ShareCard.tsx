@@ -26,6 +26,12 @@ const ShareCard = ({ result, className = "" }: IShareCardProps) => {
     typeGradients[result.runnerType as keyof typeof typeGradients] ||
     typeGradients.slow;
 
+  const displayUrl = (
+    process.env.NEXT_PUBLIC_BASE_URL || "runvibe-kr.vercel.app"
+  )
+    .replace("https://", "")
+    .replace("http://", "");
+
   return (
     <div
       className={cn(
@@ -118,10 +124,10 @@ const ShareCard = ({ result, className = "" }: IShareCardProps) => {
           </div>
           <div className='bg-white/20 backdrop-blur-sm rounded-full px-3 py-1.5 sm:px-4 sm:py-2 md:px-4 md:py-2 lg:px-5 lg:py-2.5 inline-block text-xs sm:text-sm md:text-sm lg:text-base'>
             <span className='font-bold text-white text-sm sm:text-base md:text-base lg:text-lg'>
-              runvibe-kr
+              {displayUrl.split(".")[0]}
             </span>
             <span className='text-white/80 text-xs sm:text-sm md:text-sm'>
-              .vercel.app
+              .{displayUrl.split(".").slice(1).join(".")}
             </span>
           </div>
         </div>
