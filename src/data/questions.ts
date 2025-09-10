@@ -3,7 +3,7 @@ import { IQuestion } from "@/types/test";
 export const questions: IQuestion[] = [
   {
     id: 1,
-    title: "달릴 때 보통 어떤 페이스로 뛰나요?",
+    title: "달릴 때 보통 어떤 페이스로\n 뛰나요?",
     options: [
       {
         id: "pace_1",
@@ -33,7 +33,7 @@ export const questions: IQuestion[] = [
       },
       {
         id: "pace_3",
-        text: "숨이 턱 끝까지 차는 빠른 페이스",
+        text: "숨이 턱 끝까지 차는\n 빠른 페이스",
         emoji: "💨",
         scores: {
           slow: 0,
@@ -48,11 +48,11 @@ export const questions: IQuestion[] = [
   },
   {
     id: 2,
-    title: "러닝을 하는 가장 큰 이유는 뭔가요?",
+    title: "러닝을 하는 가장 큰 이유는\n 뭔가요?",
     options: [
       {
         id: "reason_1",
-        text: "그냥 달리는 게 즐거워서",
+        text: "그냥 달리는 게\n즐거워서",
         emoji: "🌿",
         scores: {
           slow: 10,
@@ -65,7 +65,7 @@ export const questions: IQuestion[] = [
       },
       {
         id: "reason_2",
-        text: "기록 단축·목표 달성을 위해",
+        text: "기록 단축·목표\n달성을 위해",
         emoji: "🎯",
         scores: {
           slow: 0,
@@ -78,7 +78,7 @@ export const questions: IQuestion[] = [
       },
       {
         id: "reason_3",
-        text: "건강관리·다이어트를 위해",
+        text: "건강관리·다이어트를\n 위해",
         emoji: "💪",
         scores: {
           slow: 8,
@@ -97,7 +97,7 @@ export const questions: IQuestion[] = [
     options: [
       {
         id: "distance_1",
-        text: "5km 이하의 짧고 가벼운 러닝",
+        text: "5km 이하의 짧고\n 가벼운 러닝",
         emoji: "🏃‍♂️",
         scores: {
           slow: 8,
@@ -110,7 +110,7 @@ export const questions: IQuestion[] = [
       },
       {
         id: "distance_2",
-        text: "5~15km 정도의 중거리",
+        text: "5~15km 정도의\n중거리",
         emoji: "🏃‍♀️",
         scores: {
           slow: 4,
@@ -123,7 +123,7 @@ export const questions: IQuestion[] = [
       },
       {
         id: "distance_3",
-        text: "하프·풀마라톤 같은 장거리",
+        text: "하프·풀마라톤 같은\n 장거리",
         emoji: "🏅",
         scores: {
           slow: 0,
@@ -138,11 +138,11 @@ export const questions: IQuestion[] = [
   },
   {
     id: 4,
-    title: "어떤 코스를 달릴 때 가장 즐겁나요?",
+    title: "어떤 코스를 달릴 때\n 가장 즐겁나요?",
     options: [
       {
         id: "env_1",
-        text: "도심 속 포토 스팟·시티런",
+        text: "도심 속 포토 스팟\n시티런",
         emoji: "🏙️",
         scores: {
           slow: 5,
@@ -155,7 +155,7 @@ export const questions: IQuestion[] = [
       },
       {
         id: "env_2",
-        text: "한강·공원 같은 여유로운 코스",
+        text: "한강·공원 같은\n여유로운 코스",
         emoji: "🏞️",
         scores: {
           slow: 7,
@@ -181,7 +181,7 @@ export const questions: IQuestion[] = [
       },
       {
         id: "env_4",
-        text: "트랙·경기장·대회 코스",
+        text: "트랙·경기장\n대회 코스",
         emoji: "🏟️",
         scores: {
           slow: 0,
@@ -245,7 +245,7 @@ export const questions: IQuestion[] = [
     options: [
       {
         id: "music_1",
-        text: "무음악, 호흡과 자연에 집중",
+        text: "무음악, 호흡과\n자연에 집중",
         emoji: "🔇",
         scores: {
           slow: 6,
@@ -258,7 +258,7 @@ export const questions: IQuestion[] = [
       },
       {
         id: "music_2",
-        text: "잔잔한 음악으로 여유롭게",
+        text: "잔잔한 음악으로\n 여유롭게",
         emoji: "🎵",
         scores: {
           slow: 8,
@@ -271,7 +271,7 @@ export const questions: IQuestion[] = [
       },
       {
         id: "music_3",
-        text: "신나는 음악으로 리듬감 있게",
+        text: "신나는 음악으로\n 리듬감 있게",
         emoji: "🎧",
         scores: {
           slow: 2,
@@ -284,7 +284,7 @@ export const questions: IQuestion[] = [
       },
       {
         id: "music_4",
-        text: "팟캐스트·라디오로 정보 습득",
+        text: "팟캐스트·라디오로\n 정보 습득",
         emoji: "📻",
         scores: {
           slow: 4,
@@ -329,7 +329,7 @@ export const questions: IQuestion[] = [
       },
       {
         id: "mate_3",
-        text: "항상 크루나 친구들과 함께",
+        text: "항상 크루나 친구들과\n 함께",
         emoji: "👥",
         scores: {
           slow: 4,
@@ -361,7 +361,7 @@ export const questions: IQuestion[] = [
       },
       {
         id: "weather_2",
-        text: "너무 궂은 날씨만 아니면 OK",
+        text: "너무 궂은 날씨만\n아니면 OK",
         emoji: "🌤️",
         scores: {
           slow: 5,
@@ -393,7 +393,7 @@ export const questions: IQuestion[] = [
     options: [
       {
         id: "record_1",
-        text: "기록은 안 본다, 추억만 남긴다",
+        text: "기록은 안 본다,\n추억만 남긴다",
         emoji: "📸",
         scores: {
           slow: 6,
@@ -406,7 +406,7 @@ export const questions: IQuestion[] = [
       },
       {
         id: "record_2",
-        text: "가끔 확인하며 동기 부여",
+        text: "가끔 확인하며\n동기 부여",
         emoji: "📊",
         scores: {
           slow: 6,
@@ -419,7 +419,7 @@ export const questions: IQuestion[] = [
       },
       {
         id: "record_3",
-        text: "매번 측정·분석·공유까지",
+        text: "매번 측정·분석\n공유까지",
         emoji: "📈",
         scores: {
           slow: 1,
@@ -464,7 +464,7 @@ export const questions: IQuestion[] = [
       },
       {
         id: "after_3",
-        text: "철저한 회복·영양·케어",
+        text: "철저한 회복\n영양·케어",
         emoji: "💆‍♂️",
         scores: {
           slow: 2,
@@ -496,7 +496,7 @@ export const questions: IQuestion[] = [
       },
       {
         id: "gear_2",
-        text: "기능성 장비·필요한 건 챙김",
+        text: "기능성 장비\n필요한 건 챙김",
         emoji: "🎽",
         scores: {
           slow: 4,
@@ -509,7 +509,7 @@ export const questions: IQuestion[] = [
       },
       {
         id: "gear_3",
-        text: "최신 러닝웨어·한정판 러닝화 필수",
+        text: "최신 러닝웨어\n한정판 러닝화 필수",
         emoji: "👟",
         scores: {
           slow: 1,
@@ -528,7 +528,7 @@ export const questions: IQuestion[] = [
     options: [
       {
         id: "challenge_1",
-        text: "슬로우러닝으로 천천히",
+        text: "슬로우러닝으로\n천천히",
         emoji: "🐌",
         scores: {
           slow: 8,
@@ -582,7 +582,7 @@ export const questions: IQuestion[] = [
   },
   {
     id: 13,
-    title: "러닝 목표는 보통 어떻게 세우나요?",
+    title: "러닝 목표는 보통\n어떻게 세우나요?",
     options: [
       {
         id: "goal_1",
@@ -612,7 +612,7 @@ export const questions: IQuestion[] = [
       },
       {
         id: "goal_3",
-        text: "월간·분기별 장기 목표",
+        text: "월간·분기별\n장기 목표",
         emoji: "🗓️",
         scores: {
           slow: 1,
@@ -689,7 +689,7 @@ export const questions: IQuestion[] = [
     options: [
       {
         id: "motivation_1",
-        text: "스트레스 해소만으로도 충분",
+        text: "스트레스 해소만으로\n 충분",
         emoji: "😌",
         scores: {
           slow: 10,
@@ -702,7 +702,7 @@ export const questions: IQuestion[] = [
       },
       {
         id: "motivation_2",
-        text: "작은 목표 달성으로 성취감",
+        text: "작은 목표 달성으로\n성취감",
         emoji: "✅",
         scores: {
           slow: 4,
@@ -715,7 +715,7 @@ export const questions: IQuestion[] = [
       },
       {
         id: "motivation_3",
-        text: "SNS·크루 활동으로 자극받기",
+        text: "SNS·크루 활동으로\n자극받기",
         emoji: "📱",
         scores: {
           slow: 2,

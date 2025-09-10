@@ -17,11 +17,16 @@ const QuestionCard = forwardRef<HTMLDivElement, IQuestionCardProps>(
     return (
       <div
         ref={ref}
-        className={cn("card p-8 w-full mx-auto", className)}
+        className={cn("card p-6 sm:p-8 w-full mx-auto", className)}
         {...props}
       >
-        <div className='text-center mb-8'>
-          <h2 className='text-2xl font-bold text-gray-800 mb-4 leading-relaxed'>
+        <div className='text-center mb-8 flex items-center justify-center min-h-[6rem] sm:min-h-0'>
+          <h2
+            className={cn(
+              "text-xl sm:text-2xl font-bold text-gray-800 leading-relaxed",
+              "whitespace-pre-line sm:whitespace-normal"
+            )}
+          >
             {question.title}
           </h2>
         </div>
@@ -34,8 +39,9 @@ const QuestionCard = forwardRef<HTMLDivElement, IQuestionCardProps>(
                 key={option.id}
                 onClick={() => handleOptionClick(option)}
                 className={cn(
-                  "w-full p-6 rounded-xl border-2 text-left transition-all duration-200",
+                  "w-full p-4 sm:p-5 rounded-xl border-2 text-left transition-all duration-200",
                   "flex items-center space-x-4 group hover:scale-[1.02]",
+                  "min-h-[5rem]",
                   isSelected
                     ? "border-primary-500 bg-primary-50 shadow-lg"
                     : "border-gray-200 bg-white hover:border-primary-300 hover:shadow-md"
@@ -54,28 +60,32 @@ const QuestionCard = forwardRef<HTMLDivElement, IQuestionCardProps>(
                 <div className='flex-1'>
                   <span
                     className={cn(
-                      "text-lg font-medium transition-colors duration-200",
+                      "text-base sm:text-lg font-medium transition-colors duration-200",
+                      "whitespace-pre-line sm:whitespace-normal",
                       isSelected ? "text-primary-700" : "text-gray-700"
                     )}
                   >
                     {option.text}
                   </span>
                 </div>
-                {isSelected && (
-                  <div className='text-primary-500'>
-                    <svg
-                      className='w-6 h-6'
-                      fill='currentColor'
-                      viewBox='0 0 20 20'
-                    >
-                      <path
-                        fillRule='evenodd'
-                        d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
-                        clipRule='evenodd'
-                      />
-                    </svg>
-                  </div>
-                )}
+                <div
+                  className={cn(
+                    "text-primary-500 w-6 h-6 transition-opacity",
+                    isSelected ? "opacity-100" : "opacity-0"
+                  )}
+                >
+                  <svg
+                    className='w-full h-full'
+                    fill='currentColor'
+                    viewBox='0 0 20 20'
+                  >
+                    <path
+                      fillRule='evenodd'
+                      d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
+                      clipRule='evenodd'
+                    />
+                  </svg>
+                </div>
               </button>
             );
           })}
