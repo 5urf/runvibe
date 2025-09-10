@@ -20,7 +20,7 @@ export async function getTestResult(
 
     return {
       ...result,
-      typeInfo, // 추가 정보만 덧붙임
+      typeInfo,
     };
   } catch (error) {
     console.error("테스트 결과 조회 오류:", error);

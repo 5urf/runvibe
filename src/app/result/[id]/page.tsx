@@ -107,7 +107,7 @@ export default async function ResultPage({ params }: IResultPageProps) {
               나는{" "}
               <span className='text-primary-600'>{result.typeInfo.name}</span>!
             </h1>
-            <p className='text-gray-600 leading-relaxed'>
+            <p className='sm:text-base text-gray-600 leading-relaxed break-keep px-4 sm:px-0'>
               {result.typeInfo.description}
             </p>
           </div>
@@ -142,15 +142,18 @@ export default async function ResultPage({ params }: IResultPageProps) {
         </section>
         <ResultPageClient result={result} isOwnResult={isOwnResult} />
         {isOwnResult && (
-          <footer className='text-center mt-8 p-6 bg-white/60 backdrop-blur-sm rounded-2xl'>
-            <p className='text-sm text-gray-500 leading-relaxed'>
-              친구들도 자신의 러닝 타입이 궁금하지 않을까요? 🤔
-              <br />
-              <span className='font-medium text-gray-600'>
+          <div className='text-center mt-8 p-6 bg-white/60 backdrop-blur-sm rounded-2xl'>
+            <div className='text-sm text-gray-500 leading-relaxed'>
+              <p>
+                친구들도 자신의 러닝 타입이
+                <br className='sm:hidden' />
+                궁금하지 않을까요? 🤔
+              </p>
+              <p className='font-medium text-gray-600'>
                 결과를 공유해서 함께 테스트해보세요!
-              </span>
-            </p>
-          </footer>
+              </p>
+            </div>
+          </div>
         )}
       </div>
     </main>
