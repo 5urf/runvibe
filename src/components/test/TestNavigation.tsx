@@ -46,7 +46,7 @@ const TestNavigation = forwardRef<HTMLDivElement, ITestNavigationProps>(
         >
           ← 이전
         </Button>
-        <div className='text-sm text-gray-500'>
+        <div className='text-base font-medium text-gray-500'>
           {currentIndex + 1} / {totalQuestions}
         </div>
         <Button
